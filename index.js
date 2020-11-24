@@ -8,6 +8,7 @@ const passport = require("./config/ppConfig");
 const flash = require("connect-flash");
 const isLoggedIn = require("./middleware/isLoggedIn");
 const amadeus = require("./api/amadeus");
+const { sequelize } = require('./models');
 
 // views (ejs and layouts) set up
 app.set("view engine", "ejs");
@@ -44,14 +45,20 @@ app.use((req, res, next) => {
 app.use("/auth", require("./controllers/auth.js"));
 app.use('/favorites', isLoggedIn, require('./controllers/favorites'))
 app.use('/comments', isLoggedIn, require('./controllers/comments'))
-app.use('/destinations', isLoggedIn, require('./controllers/destinations'))
+app.use('/destination', isLoggedIn, require('./controllers/destination'))
 app.use('/notes', isLoggedIn, require('./controllers/notes'))
 
 app.use( express.static( "public" ) );
 // home route
-app.get("/", (req, res) => {
-  console.log('blalblbalblabla');
-  res.render("home");
+app.get("/", async (req, res) => {
+  const destinations = await sequelize.models.destinations.findAll({}).then(result => {
+    return result.map(destination => ({
+      id: destination.id,
+      destination_name: destination.destination_name,
+      photo_path: destination.photo_path,
+    }));
+  });
+  res.render("home", { destinations });
 });
 
 app.get("/signIn", (req, res) => {
@@ -90,13 +97,16 @@ app.put("/users", (req, res) => {
 });
 
 app.put("/home", (req, res) => {
+  // console.log(sequelize);
   res.render(home);
 });
 
 app.get('/amadeus', async (req, res) => {
-  const recommendations = await amadeus.getTravelRecommendations();
-  console.log(recommendations);
-  res.json(recommendations);
+  // const destination = await sequelize.models.destinations.findByPk(1);
+
+  const hotels = await amadeus.getHotels('SYD');
+  console.log(hotels);
+  res.json(hotels);
 });
 
 // profile route

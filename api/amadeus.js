@@ -19,4 +19,32 @@ const getTravelRecommendations = () => {
     return travelRecommendations;
 }
 
+const getToursAndActivities = async (latitude, longitude) => {
+    const toursAndActivities = await amadeus.shopping.activities.get({
+        latitude,
+        longitude
+    }).then(response => {
+        console.log(response);
+        return response.data
+    }).catch(e => {
+        console.log(e);
+    });
+    return toursAndActivities;
+
+}
+
+const getHotels = async (cityCode) => {
+    const hotels = await amadeus.shopping.hotelOffers.get({
+        cityCode
+      }).then(response => {
+        console.log(response);
+        return response.data
+    }).catch(e => {
+        console.log(e);
+    });
+    return hotels;
+
+}
+
 exports.getTravelRecommendations = getTravelRecommendations;
+exports.getHotels = getHotels;

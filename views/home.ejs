@@ -12,11 +12,9 @@
 <!-- THis is where the destination photo will be shown -->
 <div style="background-color: black;">
 <div id="carousel">
-    <div><img style="" src="assets/images/dakar.jpg"/></div>
-    <div><img src="assets/images/lyon.jpg"/></div>
-    <div><img src="assets/images/lisbon.jpg"/></div>
-    <div><img src="assets/images/marseille.jpg"/></div>
-    <div><img src="assets/images/porto.jpg"/></div>
+    <% destinations.forEach(function(destination){ %>
+        <div data-slick-dbId="<%= destination.id %>"><img src="<%= destination.photo_path %>"/></div>
+      <% }); %>
   </div>
 </div>
 <script
@@ -50,5 +48,9 @@
      settings: "unslick" // destroys slick
 
    }]
+});
+$('#carousel .slick-slide').on('click', function (e){ 
+    let slideClicked = $(e.currentTarget).attr("data-slick-dbId"); 
+    window.location.href = `/destination/${slideClicked}`;
 });
 </script>

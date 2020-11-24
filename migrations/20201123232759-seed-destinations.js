@@ -3,36 +3,36 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('destinations', [
       {
-        destination_name: 'Lisbon',
-        location: {"latitude": "38.78131", "longitude": "-9.13592"},
-        photo_path: 'assets/images/lisbon.jpg',
+        destination_name: 'Sydney',
+        description: 'SYD',
+        photo_path: 'assets/images/sydney.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        destination_name: 'Lyon',
-        location: { "latitude": "45.72639", "longitude": "5.09083" },
-        photo_path: 'assets/images/lyon.jpg',
+        destination_name: 'New York',
+        description: 'NYC',
+        photo_path: 'assets/images/nyc.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        destination_name: 'Marseille',
-        location: { "latitude": "43.435559999999995", "longitude": "5.21361" },
-        photo_path: 'assets/images/marseille.jpg',
+        destination_name: 'Bangkok',
+        description: 'BKK',
+        photo_path: 'assets/images/bangkok.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        destination_name: 'Dakar',
-        location: { "latitude": "14.739707999999998", "longitude": "-17.490225" },
-        photo_path: 'assets/images/dakar.jpg',
+        destination_name: 'London',
+        description: 'LON',
+        photo_path: 'assets/images/london.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         destination_name: 'Porto',
-        location: { "latitude": "41.248055", "longitude": "-8.681389" },
+        description: 'POR',
         photo_path: 'assets/images/porto.jpg',
         createdAt: new Date(),
         updatedAt: new Date()

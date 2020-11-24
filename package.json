@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "sequelize db:migrate"
+    "migrate": "sequelize db:migrate",
+    "unmigrate": "sequelize db:migrate:undo"
 
   },
   "keywords": [],
