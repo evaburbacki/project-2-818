@@ -14,6 +14,8 @@ router.get('/:id', async (req, res) => {
     res.render('destination', { hotels });
 });
 
+// TODO create a post endpoint that will add an entry in the userdestination db table assosicating a user_id with the destination_id
+
 
 
 module.exports = router

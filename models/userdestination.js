@@ -1,15 +1,9 @@
 const {Model} = require('sequelize')
 module.exports = (sequelize, DataTypes)=>{
-    class userdestination extends Model {
-       static associate(models){
-           models.userdestination.belongsToMany(models.user, {through: ''})
-       } 
-    };
+    class userdestination extends Model {};
     userdestination.init({
-        userId: DataTypes.INTEGER,
-        destinationsId: DataTypes.INTEGER,
-        userdestinationId: DataTypes.INTEGER,
-        comment: DataTypes.TEXT,
+        user_id: DataTypes.INTEGER,
+        destination_id: DataTypes.INTEGER,
     }, {
         sequelize, modelName: 'userdestination', 
     });
