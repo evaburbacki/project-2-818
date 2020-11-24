@@ -66,7 +66,7 @@ const findAndLogInUser = (email, password, doneCallback) => {
     .then(async foundUser=>{
         let match
         if(foundUser){
-            match = await foundUser.validPassword(password)
+            match = await foundUser.validPassword(password, foundUser.password);
         }
         if (!foundUser || !match) { 
             return doneCallback(null, false)
@@ -74,7 +74,9 @@ const findAndLogInUser = (email, password, doneCallback) => {
             return doneCallback(null, foundUser);
         }
     })
-    .catch(err=>doneCallback(err))
+    .catch(err=>{
+        doneCallback(err)
+    }) // donecallBack takes two parameters: error, userToBeLoggedIn
 }
 
 const fieldsToCheck = {

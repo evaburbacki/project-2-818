@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.belongsToMany(models.destinations, {through: 'userdestionation'})
     }
   };
   user.init({
@@ -67,8 +68,11 @@ module.exports = (sequelize, DataTypes) => {
   //   pendingUser.password = hashedPassword
   // })
 
-  user.prototype.validPassword = async (passwordInput) => {
-    let match = await bcrypt.compare(passwordInput, this.password)
+  // async is put before the beginning of a function that will hash
+  // or asyncronize and await says the hash might take a few secs
+  // to wait until it's done
+  user.prototype.validPassword = async (passwordInput, passwordHash) => {
+    let match = await bcrypt.compare(passwordInput, passwordHash);
     return match
   }
 
